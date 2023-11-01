@@ -37,6 +37,13 @@ public class Pedido {
     public void setDataPedido(Date dataPedido) {
         this.dataPedido = dataPedido;
     }
+    
+    public Cliente getCliente() {
+        return cliente;
+    }
 
-	
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
 }

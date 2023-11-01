@@ -18,7 +18,7 @@ public class ApresentacaoPedido {
     public static void main(String[] args) {
         int opcao;
         do {
-            System.out.println("Escolha uma opção:");
+            System.out.println("Escolha uma opï¿½ï¿½o:");
             System.out.println("1. Cadastrar Cliente");
             System.out.println("2. Buscar Cliente");
             System.out.println("3. Atualizar Cliente");
@@ -60,7 +60,7 @@ public class ApresentacaoPedido {
                     System.out.println("Encerrando o programa.");
                     break;
                 default:
-                    System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println("Opï¿½ï¿½o invï¿½lida. Tente novamente.");
             }
         } while (opcao != 9);
     }
@@ -83,7 +83,7 @@ public class ApresentacaoPedido {
             System.out.println("ID: " + cliente.getId());
             System.out.println("Nome: " + cliente.getNome());
         } else {
-            System.out.println("Cliente não encontrado.");
+            System.out.println("Cliente nï¿½o encontrado.");
         }
     }
 
@@ -95,22 +95,24 @@ public class ApresentacaoPedido {
         if (cliente != null) {
             System.out.print("Digite a data do pedido (yyyy-MM-dd): ");
             String dataPedidoStr = scanner.next();
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+
             
             try {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                Date dataPedido = dateFormat.parse(dataPedidoStr);
+                java.util.Date utilDate = formato.parse(dataPedidoStr); // Converte a string em java.util.Date
+                java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime()); // Converte java.util.Date em java.sql.Date
                 
                 Pedido novoPedido = new Pedido();
-                novoPedido.setDataPedido(dataPedido);
+                novoPedido.setDataPedido(sqlDate);
                 novoPedido.setCliente(cliente);
                 
                 pedidoService.adicionarPedido(novoPedido);
                 System.out.println("Pedido cadastrado com sucesso!");
             } catch (ParseException e) {
-                System.out.println("Data de pedido inválida. O pedido não foi cadastrado.");
+                System.out.println("Data de pedido invï¿½lida. O pedido nï¿½o foi cadastrado.");
             }
         } else {
-            System.out.println("Cliente não encontrado. O pedido não foi cadastrado.");
+            System.out.println("Cliente nï¿½o encontrado. O pedido nï¿½o foi cadastrado.");
         }
     }
 
@@ -125,7 +127,7 @@ public class ApresentacaoPedido {
             System.out.println("Data do Pedido: " + pedido.getDataPedido());
             System.out.println("Cliente: " + pedido.getCliente().getNome());
         } else {
-            System.out.println("Pedido não encontrado.");
+            System.out.println("Pedido nï¿½o encontrado.");
         }
     }
 
@@ -137,20 +139,22 @@ public class ApresentacaoPedido {
         if (pedido != null) {
             System.out.print("Digite a nova data do pedido (yyyy-MM-dd): ");
             String dataPedidoStr = scanner.next();
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             
             try {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                Date dataPedido = dateFormat.parse(dataPedidoStr);
+            	java.util.Date utilDate = formato.parse(dataPedidoStr); // Converte a string em java.util.Date
+                java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime()); // Converte java.util.Date em java.sql.Date
+            
                 
-                pedido.setDataPedido(dataPedido);
+                pedido.setDataPedido(sqlDate);
                 
                 pedidoService.atualizarPedido(pedido);
                 System.out.println("Pedido atualizado com sucesso!");
             } catch (ParseException e) {
-                System.out.println("Data de pedido inválida. O pedido não foi atualizado.");
+                System.out.println("Data de pedido invï¿½lida. O pedido nï¿½o foi atualizado.");
             }
         } else {
-            System.out.println("Pedido não encontrado. A atualização não foi realizada.");
+            System.out.println("Pedido nï¿½o encontrado. A atualizaï¿½ï¿½o nï¿½o foi realizada.");
         }
     }
 
@@ -163,7 +167,34 @@ public class ApresentacaoPedido {
             pedidoService.removerPedido(id);
             System.out.println("Pedido removido com sucesso!");
         } else {
-            System.out.println("Pedido não encontrado. A remoção não foi realizada.");
+            System.out.println("Pedido nï¿½o encontrado. A remoï¿½ï¿½o nï¿½o foi realizada.");
+        }
+    }
+    
+    private static void removerCliente() {
+        System.out.print("Digite o ID do cliente a ser removido: ");
+        Long id = scanner.nextLong();
+        Cliente cliente = clienteService.buscarCliente(id);
+        if (cliente != null) {
+            clienteService.removerCliente(id);
+            System.out.println("Cliente removido com sucesso!");
+        } else {
+            System.out.println("Cliente nï¿½o encontrado.");
+        }
+    }
+    
+    private static void atualizarCliente() {
+        System.out.print("Digite o ID do cliente a ser atualizado: ");
+        Long id = scanner.nextLong();
+        Cliente cliente = clienteService.buscarCliente(id);
+        if (cliente != null) {
+            System.out.print("Digite o novo nome do cliente: ");
+            String novoNome = scanner.next();
+            cliente.setNome(novoNome);
+            clienteService.atualizarCliente(cliente);
+            System.out.println("Cliente atualizado com sucesso!");
+        } else {
+            System.out.println("Cliente nï¿½o encontrado.");
         }
     }
 }

@@ -12,7 +12,7 @@ public class ApresentacaoCliente {
     public static void main(String[] args) {
         int opcao;
         do {
-            System.out.println("Escolha uma opção:");
+            System.out.println("Escolha uma opï¿½ï¿½o:");
             System.out.println("1. Cadastrar Cliente");
             System.out.println("2. Buscar Cliente");
             System.out.println("3. Atualizar Cliente");
@@ -38,7 +38,7 @@ public class ApresentacaoCliente {
                     System.out.println("Encerrando o programa.");
                     break;
                 default:
-                    System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println("Opï¿½ï¿½o invï¿½lida. Tente novamente.");
             }
         } while (opcao != 5);
     }
@@ -61,7 +61,7 @@ public class ApresentacaoCliente {
             System.out.println("ID: " + cliente.getId());
             System.out.println("Nome: " + cliente.getNome());
         } else {
-            System.out.println("Cliente não encontrado.");
+            System.out.println("Cliente nï¿½o encontrado.");
         }
     }
 
@@ -76,7 +76,7 @@ public class ApresentacaoCliente {
             clienteService.atualizarCliente(cliente);
             System.out.println("Cliente atualizado com sucesso!");
         } else {
-            System.out.println("Cliente não encontrado.");
+            System.out.println("Cliente nï¿½o encontrado.");
         }
     }
 
@@ -88,7 +88,7 @@ public class ApresentacaoCliente {
             clienteService.removerCliente(id);
             System.out.println("Cliente removido com sucesso!");
         } else {
-            System.out.println("Cliente não encontrado.");
+            System.out.println("Cliente nï¿½o encontrado.");
         }
     }
 }
