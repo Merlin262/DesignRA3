@@ -5,12 +5,13 @@
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         
-        <class>Camadas.ApresentacaoCliente</class>
+        
+        <class>Camadas.Apresentacao.Apresentacao</class>
         
         
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/loja"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost/loja"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.password" value=""/>
 
