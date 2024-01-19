@@ -13,7 +13,7 @@ import Entidades.ItemPedido;
 import Entidades.Pedido;
 import Entidades.Produto;
 
-public class Apresentacao {
+public class ControlersLoja {
 	private static NegociosCliente clienteService = new NegociosCliente();
 	private static NegociosProduto produtoService = new NegociosProduto();
 	private static NegociosPedido pedidoService = new NegociosPedido();
